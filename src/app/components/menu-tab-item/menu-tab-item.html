@@ -1,0 +1,31 @@
+<div class="d-flex gap-2 mb-3 justify-content-end">
+  <button
+    class="btn btn-sm"
+    [ngClass]="filterType === 'all' ? 'btn-primary' : 'btn-outline-primary'"
+    (click)="applyFilter('all')"
+  >
+    {{ 'ALL' | translate }}
+  </button>
+  <button
+    class="btn btn-sm"
+    [ngClass]="filterType === 'veg' ? 'btn-success' : 'btn-outline-success'"
+    (click)="applyFilter('veg')"
+  >
+    {{ 'VEG' | translate }}
+  </button>
+  <button
+    class="btn btn-sm"
+    [ngClass]="filterType === 'nonveg' ? 'btn-danger' : 'btn-outline-danger'"
+    (click)="applyFilter('nonveg')"
+  >
+    {{ 'NONVEG' | translate }}
+  </button>
+</div>
+
+@if (filteredDishes.length === 0) {
+<p class="text-center">No dishes available</p>
+}@else { @for (item of filteredDishes; track $index) {
+<div class="py-3" [class.border-bottom]="!$last">
+  <app-dish-card [dish]="item" (onUpdateQuantity)="handleQuantityChange($event)"></app-dish-card>
+</div>
+} }

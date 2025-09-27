@@ -1,0 +1,34 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <!-- Email Field -->
+  <div class="mb-3">
+    <label for="email" class="form-label">{{ 'EMAIL' | translate }} *</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="form-control"
+      [class.is-invalid]="email?.touched && email?.invalid"
+      [placeholder]="`ENTER_YOUR_EMAIL`| translate"
+    />
+    <div class="invalid-feedback">{{ emailError | translate }}</div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-3">
+    <label for="password" class="form-label">{{ 'PASSWORD' | translate }} *</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control"
+      [class.is-invalid]="password?.touched && password?.invalid"
+      [placeholder]="`ENTER_YOUR_PASSWORD`| translate"
+    />
+    <div class="invalid-feedback">{{ passwordError | translate }}</div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">
+    {{`LOGIN`| translate}}
+  </button>
+</form>

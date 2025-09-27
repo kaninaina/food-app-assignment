@@ -1,0 +1,17 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MenuResponseType } from '../../models/common';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MenuService {
+  private baseUrl = 'https://mocki.io/v1/b041a74f-2bf2-44b3-b9ac-407e0c8f4de6';
+
+  constructor(private http: HttpClient) {}
+
+  getMenu(): Observable<MenuResponseType> {
+    return this.http.get<MenuResponseType>(this.baseUrl);
+  }
+}

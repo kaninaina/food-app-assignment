@@ -1,0 +1,58 @@
+<div class="row g-2 align-items-start">
+  <!-- Veg/Non-Veg Indicator -->
+  <div class="col-auto">
+    <div
+      class="indicator-dot"
+      [ngClass]="{
+        'indicator-veg': dish.isVegetarian,
+        'indicator-nonveg': !dish.isVegetarian
+      }"
+    >
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Dish Details -->
+  <div class="col">
+    <div class="row g-2">
+      <div class="col-8 col-md-10">
+        <!-- Dish Name & Price -->
+        <span class="h6 d-block">{{ dish.name }}</span>
+        <p class="h6 mb-1">SAR {{ dish.price | number : '1.2-2' }}</p>
+
+        <!-- Dish Description -->
+        <small class="text-muted d-block">
+          {{ dish.description }}
+        </small>
+
+        <!-- Quantity Controls -->
+        <div
+          class="mt-2 bg-success rounded-5 text-white d-flex gap-3 justify-content-center align-items-center quntity-controller"
+          style="width: fit-content"
+        >
+          <button class="btn btn-sm text-white fw-bold" (click)="removeFromCart()">-</button>
+          <span>{{ dish.quantity ?? 0 }}</span>
+          <button class="btn btn-sm text-white fw-bold" (click)="addToCart()">+</button>
+        </div>
+
+        <!-- Customization Info -->
+        @if (dish.quantity) {
+        <span class="customization-text mt-1 d-block">{{ 'CUSTOMIZATION' | translate }}</span>
+        }
+      </div>
+
+      <!-- Dish Image -->
+      <div class="col-4 col-md-2">
+        <img
+          class="object-fit-cover rounded"
+          style="width: 100%"
+          [src]="dish.image"
+          alt="Sample image"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+        />
+        <small>Dish Image not found</small>
+        <img />
+      </div>
+    </div>
+  </div>
+</div>
